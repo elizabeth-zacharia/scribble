@@ -5,8 +5,9 @@ import {
   IconButton,
   Typography,
   Button,
+  TextField,
 } from '@mui/material';
-
+import AddNote from '../addNote';
 import MenuIcon from '@mui/icons-material/Menu';
 const Navbar = () => {
   return (
@@ -26,6 +27,7 @@ const Navbar = () => {
       </AppBar>
     </Box>
   );
+  return <AddNote />;
 };
 
 export default Navbar;

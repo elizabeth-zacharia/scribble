@@ -1,24 +1,44 @@
-import { Box } from '@mui/material';
+import React, { useRef, useEffect, FC, useState } from 'react';
 
-const AddNote = () => {
+const AddNote: FC = () => {
+  const [showSavebutton, setshowSavebutton] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const heightLimit = 200; // Maximum height: 200px
+
+  useEffect(() => {
+    const textarea = textareaRef.current;
+
+    if (!textarea) return;
+
+    const handleInput = () => {
+      textarea.style.height = ''; // Reset the height
+      textarea.style.height =
+        Math.min(textarea.scrollHeight, heightLimit) + 'px';
+    };
+
+    textarea.addEventListener('input', handleInput);
+
+    // Clean up the event listener
+    return () => {
+      textarea.removeEventListener('input', handleInput);
+    };
+  }, []);
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <div>
       <textarea
+        ref={textareaRef}
+        rows={1}
+        placeholder='Add a to do'
         style={{
           width: '100%',
-
-          padding: '10px',
-          fontSize: '16px',
-          fontWeight: 'bold', // Bold text
-          fontStyle: 'italic', // Italic text
-          border: '1px solid #ccc',
-          borderRadius: '4px',
-          marginTop: '10px',
+          boxSizing: 'border-box',
+          overflow: 'hidden',
         }}
-        rows={1}
-        placeholder='Add a to do...'
-      ></textarea>
-    </Box>
+        onClick={() => setshowSavebutton(true)}
+      />
+      {showSavebutton ? <button>Save</button> : null}
+    </div>
   );
 };
 

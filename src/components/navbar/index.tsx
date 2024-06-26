@@ -1,14 +1,5 @@
-import {
-  Box,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Button,
-  TextField,
-} from '@mui/material';
-import AddNote from '../addNote';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Box, AppBar, Toolbar, Typography } from '@mui/material';
+
 const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -27,7 +18,6 @@ const Navbar = () => {
       </AppBar>
     </Box>
   );
-  return <AddNote />;
 };
 
 export default Navbar;

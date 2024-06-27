@@ -1,43 +1,53 @@
-import React, { useRef, useEffect, FC, useState } from 'react';
+import { Button } from '@mui/material';
+import Box from '@mui/material/Box';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { useRef, useEffect, FC, useState } from 'react';
 
 const AddNote: FC = () => {
-  const [showSavebutton, setshowSavebutton] = useState(false);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const heightLimit = 200; // Maximum height: 200px
+  const [showSavebutton, setShowSaveButton] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const textarea = textareaRef.current;
-
-    if (!textarea) return;
-
-    const handleInput = () => {
-      textarea.style.height = ''; // Reset the height
-      textarea.style.height =
-        Math.min(textarea.scrollHeight, heightLimit) + 'px';
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setShowSaveButton(false);
+      }
     };
 
-    textarea.addEventListener('input', handleInput);
+    // Attach the handler to the document
+    document.addEventListener('mousedown', handleClickOutside);
 
-    // Clean up the event listener
     return () => {
-      textarea.removeEventListener('input', handleInput);
+      // Remove the event listener on cleanup
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [containerRef]);
 
   return (
-    <div>
-      <textarea
-        ref={textareaRef}
-        rows={1}
-        placeholder='Add a to do'
-        style={{
-          width: '100%',
-          boxSizing: 'border-box',
-          overflow: 'hidden',
-        }}
-        onClick={() => setshowSavebutton(true)}
+    <div ref={containerRef} className='w-3/6 mx-auto shadow-lg my-4 rounded'>
+      <TextareaAutosize
+        className='
+                w-full p-2 rounded-lg
+                border-none 
+                resize-none outline-none
+                text-base font-sans
+                placeholder-gray-400 text-gray-700
+            '
+        aria-label='note'
+        placeholder='Take a note...'
+        minRows={3}
+        onClick={() => setShowSaveButton(true)}
       />
-      {showSavebutton ? <button>Save</button> : null}
+      {showSavebutton ? (
+        <Box className='flex justify-end'>
+          <Button variant='contained' sx={{ margin: 1 }}>
+            Save
+          </Button>{' '}
+        </Box>
+      ) : null}
     </div>
   );
 };

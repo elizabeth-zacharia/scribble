@@ -1,13 +1,5 @@
-import {
-  Box,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Button,
-} from '@mui/material';
+import { Box, AppBar, Toolbar, Typography } from '@mui/material';
 
-import MenuIcon from '@mui/icons-material/Menu';
 const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>

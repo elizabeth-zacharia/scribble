@@ -1,6 +1,6 @@
 import './App.css';
-import Navbar from './components/navbar';
 import AddNote from './components/addNote';
+import Navbar from './components/navbar';
 function App() {
   return (
     <>
@@ -9,5 +9,4 @@ function App() {
     </>
   );
 }
-
 export default App;

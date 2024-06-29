@@ -2,10 +2,27 @@ import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { useRef, useEffect, FC, useState } from 'react';
+import { Note } from '../../index.type';
 
-const AddNote: FC = () => {
+type AddNoteProps = {
+  saveNote: (note: Note) => void;
+};
+const AddNote: FC<AddNoteProps> = ({ saveNote }) => {
   const [showSavebutton, setShowSaveButton] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [description, setDescription] = useState('');
+
+  const handleSave = () => {
+    const Newnote: Note = {
+      description: description,
+      createdAt: new Date(),
+    };
+
+    console.log('note', Newnote);
+    saveNote(Newnote);
+    setDescription('');
+    setShowSaveButton(false);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,10 +57,12 @@ const AddNote: FC = () => {
         placeholder='Take a note...'
         minRows={3}
         onClick={() => setShowSaveButton(true)}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
       />
       {showSavebutton ? (
         <Box className='flex justify-end'>
-          <Button variant='contained' sx={{ margin: 1 }}>
+          <Button variant='contained' sx={{ margin: 1 }} onClick={handleSave}>
             Save
           </Button>{' '}
         </Box>

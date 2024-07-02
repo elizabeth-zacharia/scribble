@@ -13,13 +13,12 @@ const AddNote: FC<AddNoteProps> = ({ saveNote }) => {
   const [description, setDescription] = useState('');
 
   const handleSave = () => {
-    const Newnote: Note = {
+    const newNote: Note = {
       description: description,
       createdAt: new Date(),
     };
 
-    console.log('note', Newnote);
-    saveNote(Newnote);
+    saveNote(newNote);
     setDescription('');
     setShowSaveButton(false);
   };

@@ -1,7 +1,7 @@
 import { Note } from '../../index.type';
 import { FC } from 'react';
-import { Box } from '@mui/material';
 import NoteCard from '../NoteCard';
+import Masonry from '@mui/lab/Masonry';
 
 type NoteListProps = {
   notes: Note[];
@@ -10,11 +10,11 @@ type NoteListProps = {
 const NoteList: FC<NoteListProps> = ({ notes }) => {
   return (
     <div>
-      <Box display='flex' flexWrap='wrap' gap={2}>
-        {notes.map((note, index) => (
+      <Masonry columns={3} spacing={2}>
+        {notes.map((note) => (
           <NoteCard note={note} />
         ))}
-      </Box>
+      </Masonry>
     </div>
   );
 };

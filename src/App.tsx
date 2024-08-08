@@ -1,5 +1,5 @@
 import './App.css';
-import AddNote from './components/addNote';
+import AddNote from './components/AddNote';
 import Navbar from './components/navbar';
 function App() {
   return (

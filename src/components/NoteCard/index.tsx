@@ -1,4 +1,4 @@
-import { Card } from '@mui/material';
+import { Card, CardContent, Typography } from '@mui/material';
 import { Note } from '../../index.type';
 import { FC } from 'react';
 
@@ -8,8 +8,16 @@ type NoteCardProps = {
 
 const NoteCard: FC<NoteCardProps> = ({ note }) => {
   return (
-    <Card variant='outlined' sx={{ width: 200, height: 'auto', padding: 2 }}>
-      <div style={{ whiteSpace: 'pre-line' }}>{note.description}</div>
+    <Card variant='outlined' sx={{ width: '100%', height: 'auto', padding: 2 }}>
+      <CardContent>
+        <Typography
+          variant='body2'
+          component='div'
+          style={{ whiteSpace: 'pre-line' }}
+        >
+          {note.description}
+        </Typography>
+      </CardContent>
     </Card>
   );
 };

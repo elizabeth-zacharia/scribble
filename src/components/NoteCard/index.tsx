@@ -14,12 +14,6 @@ const NoteCard: FC<NoteCardProps> = ({ note }) => {
           component='div'
           sx={{
             whiteSpace: 'pre-line',
-            '& img': {
-              maxWidth: '100%',
-              height: 'auto',
-              display: 'block',
-              margin: '0 auto',
-            },
             '& table': {
               width: '100%',
               borderCollapse: 'collapse',

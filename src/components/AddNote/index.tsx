@@ -16,7 +16,7 @@ const AddNote: FC<AddNoteProps> = ({ saveNote }) => {
 
   const handleSave = () => {
     const newNote: Note = {
-      id: Date.now().toString(), // Example ID generation
+      id: Date.now().toString(), 
       description: description,
       createdAt: new Date(),
     };

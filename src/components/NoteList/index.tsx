@@ -12,7 +12,7 @@ const NoteList: FC<NoteListProps> = ({ notes }) => {
     <div>
       <Masonry columns={3} spacing={2}>
         {notes.map((note) => (
-          <NoteCard note={note} />
+          <NoteCard key={note.id} note={note} />
         ))}
       </Masonry>
     </div>

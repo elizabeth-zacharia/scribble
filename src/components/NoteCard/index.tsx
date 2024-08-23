@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent, Box } from '@mui/material';
 import { Note } from '../../index.type';
 import { FC } from 'react';
 
@@ -10,15 +10,35 @@ const NoteCard: FC<NoteCardProps> = ({ note }) => {
   return (
     <Card variant='outlined' sx={{ width: '100%', height: 'auto', padding: 2 }}>
       <CardContent>
-        <Typography
-          variant='body2'
+        <Box
           component='div'
-          style={{ whiteSpace: 'pre-line' }}
-        >
-          {note.description}
-        </Typography>
+          sx={{
+            whiteSpace: 'pre-line',
+            '& img': {
+              maxWidth: '100%',
+              height: 'auto',
+              display: 'block',
+              margin: '0 auto',
+            },
+            '& table': {
+              width: '100%',
+              borderCollapse: 'collapse',
+              marginTop: 2,
+            },
+            '& th, & td': {
+              border: '1px solid #ccc',
+              padding: '8px',
+              textAlign: 'left',
+            },
+            '& th': {
+              backgroundColor: '#f2f2f2',
+            },
+          }}
+          dangerouslySetInnerHTML={{ __html: note.description }}
+        />
       </CardContent>
     </Card>
   );
 };
+
 export default NoteCard;
